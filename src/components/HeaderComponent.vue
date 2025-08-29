@@ -101,7 +101,7 @@ interface Props {
   menuItems?: MenuItem[]
 }
 
-const props = withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<Props>(), {
   logoText: 'TuLogo',
   logoImageUrl: '',
   menuItems: () => [
