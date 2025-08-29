@@ -1,7 +1,30 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'ancient'; /* The name you'll use to reference the font */
+  src: url('../fonts/EnchantedLand.otf') format('opentype'); /* Correct format */
+  font-weight: 400; /* Normal weight */
+  font-display: swap;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'morris';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/MorrisRomanBlack.ttf') format('truetype');
+}
+
+@font-face{
+  font-family: 'typewriter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/RobsTypewriter-Regular.ttf') format('truetype');
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'morris', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -30,11 +53,6 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
