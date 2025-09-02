@@ -19,7 +19,7 @@
 
         <!-- Desktop Navigation -->
         <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-4">
+          <div class="ml-10 flex items-baseline space-x-4" ref="menuRef">
             <router-link
               v-for="item in menuItems"
               :key="item.name"
@@ -89,6 +89,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { gsap } from 'gsap'
+
+const menuRef = ref<HTMLElement | null>(null)
 
 // Interfaces
 interface MenuItem {
@@ -138,9 +141,22 @@ const handleResize = (): void => {
   }
 }
 
+// Animacion entrada del menu
+const animatemenu = () => {
+  if (menuRef.value) {
+    gsap.from(menuRef.value, {
+      opacity: 0,
+      y: -100,
+      ease: "power2.out",
+      duration: 1,
+    })
+  }
+}
+
 // Lifecycle hooks
 onMounted(() => {
   window.addEventListener('resize', handleResize)
+    animatemenu()
 })
 
 onUnmounted(() => {
