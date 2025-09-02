@@ -6,11 +6,13 @@
         <div class="flex-shrink-0">
           <router-link to="/" class="flex items-center space-x-2 group">
             <!-- Puedes reemplazar esto con tu logo -->
-            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-              <span class="text-white font-bold text-xl">L</span>
-            </div>
-            <span class="font-ancient text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-              TuLogo
+              <img 
+                src="../assets/img/realmsquare.png" 
+                alt="Logo" 
+                class="w-14 h-14 hover:scale-105 transition-transform duration-200 rounded-lg"
+              />
+            <span class="font-ancient text-xl font-semibold text-gray-900 group-hover:text-[#5F7CE0] transition-colors duration-200">
+              Realm Properties
             </span>
           </router-link>
         </div>
@@ -22,8 +24,8 @@
               v-for="item in menuItems"
               :key="item.name"
               :to="item.href"
-              class="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-50 relative group"
-              :class="{ 'text-blue-600 bg-blue-50': isActiveRoute(item.href) }"
+              class="text-gray-700 hover:text-[#5F7CE0] px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-50 relative group"
+              :class="{ 'text-[#5F7CE0] bg-blue-50': isActiveRoute(item.href) }"
             >
               {{ item.name }}
               <!-- Línea de subrayado animada -->
@@ -72,8 +74,8 @@
             v-for="item in menuItems"
             :key="item.name"
             :to="item.href"
-            class="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-white"
-            :class="{ 'text-blue-600 bg-white': isActiveRoute(item.href) }"
+            class="text-gray-700 hover:text-[#5F7CE0] block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-white"
+            :class="{ 'text-[#5F7CE0] bg-white': isActiveRoute(item.href) }"
             @click="closeMobileMenu"
           >
             {{ item.name }}
