@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import HeaderComponent from "../components/HeaderComponent.vue";
 import { gsap } from "gsap";
 import { ref, onMounted } from "vue";
 import { SplitText } from 'gsap/SplitText'
@@ -45,7 +44,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <HeaderComponent />
   <main class="flex flex-col items-center justify-center min-h-screen">
     <div class="card flex">
       <h1 class="text-6xl text-black font-ancient" ref="subtitleRef">
