@@ -7,7 +7,7 @@
           <router-link to="/" class="flex items-center space-x-2 group">
             <!-- Puedes reemplazar esto con tu logo -->
               <img 
-                src="../assets/img/realmsquare.png" 
+                src="../assets/img/shape.png" 
                 alt="Logo" 
                 class="w-14 h-14 hover:scale-105 transition-transform duration-200 rounded-lg"
               />
