@@ -1,6 +1,6 @@
 <template>
     <div >
-        <h1 class="font-ancient text-3xl p-8"> Contact me</h1>
+        <h1 class="font-ancient text-3xl min-h-screen p-8"> Contact me</h1>
     </div>
 </template>
 
