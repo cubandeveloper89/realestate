@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="font-ancient text-3xl p-8">Properties</h2>
+        <h2 class="font-ancient text-3xl min-h-screen p-8">Properties</h2>
     </div>
 </template>
 
