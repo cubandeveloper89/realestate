@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center gap-8">
+  <div class="flex flex-col items-center gap-8 min-h-screen">
     <h1 class="font-ancient md:text-6xl text-3xl p-8">About Me</h1>
     <div class="w-[300px] h-[300pz] rounded-full bg-[#5F7CE0]">
       <img
