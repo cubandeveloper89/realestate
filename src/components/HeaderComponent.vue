@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+  <header class="bg-white dark:bg-neutral-700 shadow-md sticky top-0 z-50 transition-all duration-300 rounded">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
@@ -11,10 +11,16 @@
                 alt="Logo" 
                 class="w-14 h-14 hover:scale-105 transition-transform duration-200 rounded-lg"
               />
-            <span class="font-ancient text-xl font-semibold text-gray-900 group-hover:text-[#5F7CE0] transition-colors duration-200">
+            <span class="font-ancient text-xl font-semibold text-gray-900 dark:text-[#E3E3E3] group-hover:text-[#5F7CE0] transition-colors duration-200">
               Realm Properties
             </span>
           </router-link>
+        </div>
+
+        <!-- Welcome Message -->
+        <div v-if="false" class="hidden md:block">
+          <p class="text-gray-900 dark:text-[#E3E3E3] font-medium cursor-default">¡Bienvenido a Realm Properties!</p> <!-- this text must change every sesion -->
+          <!-- missing name -->
         </div>
 
         <!-- Desktop Navigation -->
@@ -110,7 +116,7 @@ withDefaults(defineProps<Props>(), {
   logoText: 'TuLogo',
   logoImageUrl: '',
   menuItems: () => [
-    { name: 'Inicio', href: '/' },
+    { name: 'Inicio', href: '/home' },
     { name: 'Acerca', href: '/about' },
     { name: 'Propiedades', href: '/properties' },
     { name: 'Contacto', href: '/contact' },
