@@ -4,7 +4,7 @@
       <div class="flex justify-between items-center h-16">
         <!-- Logo -->
         <div class="flex-shrink-0">
-          <router-link to="/" class="flex items-center space-x-2 group">
+          <router-link to="/home" class="flex items-center space-x-2 group">
             <!-- Puedes reemplazar esto con tu logo -->
               <img 
                 src="../assets/img/shape.png" 
@@ -137,6 +137,10 @@ const closeMobileMenu = (): void => {
 }
 
 const isActiveRoute = (href: string): boolean => {
+  if (href === "/properties") {
+    return route.path.startsWith("/properties")
+  }
+
   return route.path === href
 }
 
