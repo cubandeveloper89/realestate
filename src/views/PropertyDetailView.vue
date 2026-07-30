@@ -10,80 +10,80 @@ const property = computed(() => findPropertyBySlug(props.slug));
 </script>
 
 <template>
-  <main class="min-h-screen bg-[#f7f3ea] px-6 py-12 text-[#1f2933] lg:px-8">
-    <section v-if="property" class="mx-auto max-w-6xl">
-      <router-link to="/properties" class="text-sm font-semibold text-[#5F7CE0] hover:text-[#4b63bd]">
-        Back to properties
+  <main class="mx-auto w-full max-w-7xl flex-1 px-4 py-12">
+    <section v-if="property">
+      <router-link to="/properties" class="btn btn-ghost">
+        &larr; Back to properties
       </router-link>
 
-      <div class="mt-6 overflow-hidden rounded-lg bg-white shadow-xl">
+      <div class="grayscale mt-4">
         <img
           :src="property.heroImage"
           :alt="property.title"
           class="h-[28rem] w-full object-cover"
         />
-        <div class="grid gap-8 p-6 text-left lg:grid-cols-[1fr_20rem] lg:p-8">
-          <div>
-            <p class="text-sm uppercase tracking-[0.16em] text-[#5F7CE0]">
-              {{ property.type }} · {{ property.status }}
-            </p>
-            <h1 class="mt-3 font-ancient text-6xl leading-none text-[#172033]">
-              {{ property.title }}
-            </h1>
-            <p class="mt-3 text-lg text-[#596675]">{{ property.location }}</p>
-            <p class="mt-6 text-base leading-8 text-[#44515f]">
-              {{ property.description }}
-            </p>
+      </div>
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]">
+        <div>
+          <p class="card-kicker">
+            {{ property.type }} &middot; {{ property.status }}
+          </p>
+          <h1 class="mt-2 text-4xl md:text-5xl">{{ property.title }}</h1>
+          <p class="text-muted mt-3 text-lg">{{ property.location }}</p>
+
+          <hr class="hr" />
+
+          <p class="max-w-prose leading-8">{{ property.description }}</p>
+        </div>
+
+        <aside class="card h-fit p-4">
+          <p class="text-2xl font-semibold">
+            {{ formatPropertyPrice(property) }}
+          </p>
+
+          <dl class="grid grid-cols-3 gap-3 border-t-2 border-divider pt-3">
+            <div>
+              <dt class="text-muted text-[11px] uppercase tracking-[0.08em]">Beds</dt>
+              <dd class="text-sm">{{ property.bedrooms }}</dd>
+            </div>
+            <div>
+              <dt class="text-muted text-[11px] uppercase tracking-[0.08em]">Baths</dt>
+              <dd class="text-sm">{{ property.bathrooms }}</dd>
+            </div>
+            <div>
+              <dt class="text-muted text-[11px] uppercase tracking-[0.08em]">Sq ft</dt>
+              <dd class="text-sm">{{ property.areaSqFt.toLocaleString() }}</dd>
+            </div>
+          </dl>
+
+          <div
+            v-for="feature in property.features"
+            :key="feature.label"
+            class="flex justify-between gap-4 border-t border-divider pt-3 text-sm"
+          >
+            <span class="font-semibold">{{ feature.label }}</span>
+            <span class="text-muted text-right">{{ feature.value }}</span>
           </div>
 
-          <aside class="rounded bg-[#f7f3ea] p-5">
-            <p class="text-2xl font-semibold text-[#172033]">
-              {{ formatPropertyPrice(property) }}
-            </p>
-            <dl class="mt-5 grid grid-cols-3 gap-3 text-sm text-[#44515f]">
-              <div>
-                <dt class="font-semibold">Beds</dt>
-                <dd>{{ property.bedrooms }}</dd>
-              </div>
-              <div>
-                <dt class="font-semibold">Baths</dt>
-                <dd>{{ property.bathrooms }}</dd>
-              </div>
-              <div>
-                <dt class="font-semibold">Sq ft</dt>
-                <dd>{{ property.areaSqFt.toLocaleString() }}</dd>
-              </div>
-            </dl>
-            <div class="mt-6 space-y-3">
-              <div
-                v-for="feature in property.features"
-                :key="feature.label"
-                class="flex justify-between gap-4 border-t border-[#d9d2c3] pt-3 text-sm"
-              >
-                <span class="font-semibold text-[#172033]">{{ feature.label }}</span>
-                <span class="text-right text-[#596675]">{{ feature.value }}</span>
-              </div>
-            </div>
-            <router-link
-              to="/contact"
-              class="mt-6 inline-flex w-full justify-center rounded bg-[#5F7CE0] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#4b63bd]"
-            >
-              Request Private Showing
-            </router-link>
-          </aside>
-        </div>
+          <router-link to="/contact" class="btn btn-primary btn-block">
+            Request Private Showing
+          </router-link>
+        </aside>
       </div>
     </section>
 
-    <section v-else class="mx-auto max-w-3xl rounded-lg bg-white p-8 text-center shadow-lg">
-      <h1 class="font-ancient text-5xl text-[#172033]">Property not found</h1>
-      <p class="mt-3 text-[#596675]">
+    <section v-else class="max-w-2xl">
+      <p class="card-kicker">404</p>
+      <h1 class="mt-2 text-4xl md:text-5xl">Property not found</h1>
+
+      <hr class="hr" />
+
+      <p class="text-muted max-w-prose">
         The listing may have moved, sold, or never existed in this realm.
       </p>
-      <router-link
-        to="/properties"
-        class="mt-6 inline-flex rounded bg-[#172033] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#2d3b52]"
-      >
+
+      <router-link to="/properties" class="btn btn-primary mt-6">
         Return to Properties
       </router-link>
     </section>

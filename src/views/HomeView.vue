@@ -44,7 +44,7 @@ onMounted(() => {
     <div class="hero-photo grayscale" ref="imageRef">
       <img
         src="../assets/img/facade.jpg"
-        alt="Fachada de una casa moderna de dos plantas con piscina, al atardecer"
+        alt="Facade of a modern two-storey house with a pool at dusk"
       />
     </div>
     <div class="hero-scrim"></div>
@@ -54,23 +54,27 @@ onMounted(() => {
         <p class="card-kicker">Realm Properties</p>
 
         <h1 class="mt-2 text-4xl md:text-6xl" ref="headingRef">
-          Arquitectura para vivir
+          Architecture for living
         </h1>
 
         <p class="text-muted mt-4 max-w-prose">
-          Una selección de propiedades con carácter: obra moderna, materiales
-          honestos y emplazamientos que importan.
+          A selection of homes with character: modern work, honest materials,
+          and locations that matter.
         </p>
 
         <div class="mt-6 flex flex-wrap gap-3">
-          <button type="button" class="btn btn-primary">Ver propiedades</button>
-          <router-link to="/contact" class="btn btn-secondary">Contacto</router-link>
+          <router-link to="/properties" class="btn btn-primary">
+            View Properties
+          </router-link>
+          <router-link to="/contact" class="btn btn-secondary">
+            Contact
+          </router-link>
         </div>
       </div>
     </section>
 
     <p class="text-muted absolute bottom-3 left-4 text-[11px]">
-      Residencia moderna con piscina, al atardecer.
+      Modern residence with pool, at dusk.
     </p>
   </main>
 </template>

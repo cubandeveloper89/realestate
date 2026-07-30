@@ -1,18 +1,47 @@
 <template>
-    <div class="flex flex-col items-center justify-center min-h-screen ">
-      <div class="flex flex-col items-center p-8 border-1 border-[#5F7CE0] rounded-xl shadow-2xl">
-        <h1 class="font-ancient text-4xl mb-8 cursor-default max-w-96">Asentar vuestro nombre en el Gran Libro</h1>
-        <form @submit.prevent="handleRegister" class="flex flex-col gap-4 w-90">
-          <input v-model="email" type="email" placeholder="Correo electrónico" class="p-2 border rounded" required />
-          <input v-model="password" type="password" placeholder="Contraseña" class="p-2 border rounded" required />
-          <button type="submit" class="bg-[#5F7CE0] dark:text-white p-2 rounded">Entrar</button>
-          <h1>Ya estas inscrito?</h1>
-          <router-link :to="'/login'">Inicia sesión aquí</router-link>
-          <p v-if="error" class="text-red-500">{{ error }}</p>
-        </form>
+  <main class="flex flex-1 items-center px-4 py-12">
+    <!-- The card is centred as layout; everything inside stays flush left. -->
+    <div class="mx-auto w-full max-w-sm">
+      <p class="card-kicker">Realm Properties</p>
+      <h1 class="mt-2 text-3xl">Enter your name in the Great Book</h1>
 
-      </div>
-  </div>
+      <hr class="hr" />
+
+      <form @submit.prevent="handleRegister" class="flex flex-col gap-4">
+        <div class="field">
+          <label for="register-email">Email address</label>
+          <input
+            id="register-email"
+            v-model="email"
+            type="email"
+            class="input"
+            placeholder="you@email.com"
+            required
+          />
+        </div>
+
+        <div class="field">
+          <label for="register-password">Password</label>
+          <input
+            id="register-password"
+            v-model="password"
+            type="password"
+            class="input"
+            required
+          />
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+
+        <p v-if="error" class="m-0 text-sm text-accent-700">{{ error }}</p>
+      </form>
+
+      <p class="text-muted mt-6 mb-0 text-sm">
+        Already registered?
+        <router-link to="/login">Sign in here</router-link>
+      </p>
+    </div>
+  </main>
 </template>
 
 <script lang="ts" setup>
@@ -38,6 +67,3 @@ const handleRegister = async () => {
   }
 };
 </script>
-
-<style scoped>
-</style>

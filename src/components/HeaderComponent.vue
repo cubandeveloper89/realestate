@@ -30,7 +30,7 @@
         class="btn btn-secondary btn-icon md:hidden"
         :aria-expanded="isMobileMenuOpen"
       >
-        <span class="sr-only">Abrir menú principal</span>
+        <span class="sr-only">Open main menu</span>
         <svg
           width="20"
           height="20"
@@ -93,10 +93,10 @@ withDefaults(defineProps<Props>(), {
   logoText: 'TuLogo',
   logoImageUrl: '',
   menuItems: () => [
-    { name: 'Inicio', href: '/home' },
-    { name: 'Acerca', href: '/about' },
-    { name: 'Propiedades', href: '/properties' },
-    { name: 'Contacto', href: '/contact' },
+    { name: 'Home', href: '/home' },
+    { name: 'About', href: '/about' },
+    { name: 'Properties', href: '/properties' },
+    { name: 'Contact', href: '/contact' },
   ]
 })
 
