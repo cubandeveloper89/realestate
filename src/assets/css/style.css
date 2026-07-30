@@ -176,12 +176,17 @@
   .btn-block { width: 100%; margin-top: var(--space-2); justify-content: flex-start; text-align: left; }
 
   /* — forms — */
-  .field > label {
+  /* legend covers a .field wrapping a radio group, where a bare label would
+     have no control to point at. */
+  .field > label,
+  .field > legend {
     display: block;
     font-size: 12px;
     margin-bottom: 5px;
+    padding: 0;
     color: color-mix(in srgb, var(--color-text) 70%, transparent);
   }
+  fieldset.field { margin: 0; padding: 0; border: 0; }
   .input {
     width: 100%;
     min-height: 36px;

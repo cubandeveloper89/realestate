@@ -66,7 +66,10 @@ const property = computed(() => findPropertyBySlug(props.slug));
             <span class="text-muted text-right">{{ feature.value }}</span>
           </div>
 
-          <router-link to="/contact" class="btn btn-primary btn-block">
+          <router-link
+            :to="`/contact?property=${property.slug}`"
+            class="btn btn-primary btn-block"
+          >
             Request Private Showing
           </router-link>
         </aside>
