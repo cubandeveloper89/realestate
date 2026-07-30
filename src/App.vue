@@ -1,21 +1,12 @@
 <script setup lang="ts">
+import HeaderComponent from "./components/HeaderComponent.vue";
 </script>
 
 <template>
-  <router-view></router-view>
+  <!-- Flex column so a view can claim the remaining viewport height with
+       flex-1, without hard-coding the header's height anywhere. -->
+  <div class="flex min-h-dvh flex-col">
+    <HeaderComponent />
+    <router-view></router-view>
+  </div>
 </template>
-
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
