@@ -1,100 +1,77 @@
 <template>
-  <header class="bg-white dark:bg-neutral-700 shadow-md sticky top-0 z-50 transition-all duration-300 rounded">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <!-- Logo -->
-        <div class="flex-shrink-0">
-          <router-link to="/" class="flex items-center space-x-2 group">
-            <!-- Puedes reemplazar esto con tu logo -->
-              <img 
-                src="../assets/img/shape.png" 
-                alt="Logo" 
-                class="w-14 h-14 hover:scale-105 transition-transform duration-200 rounded-lg"
-              />
-            <span class="font-ancient text-xl font-semibold text-gray-900 dark:text-[#E3E3E3] group-hover:text-[#5F7CE0] transition-colors duration-200">
-              Realm Properties
-            </span>
-          </router-link>
-        </div>
+  <header class="sticky top-0 z-50 bg-bg">
+    <!-- Full-bleed bar: the 2px rule runs edge to edge and does the organising. -->
+    <nav class="nav">
+      <router-link to="/" class="nav-brand flex items-center gap-3 no-underline">
+        <img
+          src="../assets/img/realmsquare.png"
+          alt=""
+          class="grayscale h-9 w-9"
+        />
+        <span>Realm Properties</span>
+      </router-link>
 
-        <!-- Welcome Message -->
-        <div v-if="false" class="hidden md:block">
-          <p class="text-gray-900 dark:text-[#E3E3E3] font-medium cursor-default">¡Bienvenido a Realm Properties!</p> <!-- this text must change every sesion -->
-          <!-- missing name -->
-        </div>
-
-        <!-- Desktop Navigation -->
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-4" ref="menuRef">
-            <router-link
-              v-for="item in menuItems"
-              :key="item.name"
-              :to="item.href"
-              class="text-gray-700 hover:text-[#5F7CE0] px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 hover:bg-gray-50 relative group"
-              :class="{ 'text-[#5F7CE0] bg-blue-50': isActiveRoute(item.href) }"
-            >
-              {{ item.name }}
-              <!-- Línea de subrayado animada -->
-              <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </router-link>
-          </div>
-        </div>
-
-        <!-- Mobile menu button -->
-        <div class="md:hidden">
-          <button
-            @click="toggleMobileMenu"
-            type="button"
-            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors duration-200"
-            :aria-expanded="isMobileMenuOpen"
-          >
-            <span class="sr-only">Abrir menú principal</span>
-            <!-- Hamburger Icon -->
-            <svg 
-              class="transition-transform duration-300"
-              :class="{ 'rotate-45': isMobileMenuOpen }"
-              width="24" 
-              height="24" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              stroke-width="2"
-            >
-              <line x1="3" y1="6" x2="21" y2="6" v-show="!isMobileMenuOpen"></line>
-              <line x1="3" y1="12" x2="21" y2="12" v-show="!isMobileMenuOpen"></line>
-              <line x1="3" y1="18" x2="21" y2="18" v-show="!isMobileMenuOpen"></line>
-              <line x1="18" y1="6" x2="6" y2="18" v-show="isMobileMenuOpen"></line>
-              <line x1="6" y1="6" x2="18" y2="18" v-show="isMobileMenuOpen"></line>
-            </svg>
-          </button>
-        </div>
+      <!-- Desktop navigation -->
+      <div class="hidden items-center gap-6 md:flex" ref="menuRef">
+        <router-link
+          v-for="item in menuItems"
+          :key="item.name"
+          :to="item.href"
+          class="transition-colors duration-200"
+        >
+          {{ item.name }}
+        </router-link>
       </div>
 
-      <!-- Mobile Navigation -->
-      <div 
-        class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
-        :class="isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'"
+      <!-- Mobile menu button -->
+      <button
+        @click="toggleMobileMenu"
+        type="button"
+        class="btn btn-secondary btn-icon md:hidden"
+        :aria-expanded="isMobileMenuOpen"
       >
-        <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-50 rounded-lg mt-2">
-          <router-link
-            v-for="item in menuItems"
-            :key="item.name"
-            :to="item.href"
-            class="text-gray-700 hover:text-[#5F7CE0] block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 hover:bg-white"
-            :class="{ 'text-[#5F7CE0] bg-white': isActiveRoute(item.href) }"
-            @click="closeMobileMenu"
-          >
-            {{ item.name }}
-          </router-link>
-        </div>
-      </div>
+        <span class="sr-only">Abrir menú principal</span>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <template v-if="!isMobileMenuOpen">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </template>
+          <template v-else>
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </template>
+        </svg>
+      </button>
     </nav>
+
+    <!-- Mobile navigation -->
+    <div
+      class="overflow-hidden border-b-2 border-divider bg-surface transition-all duration-300 ease-in-out md:hidden"
+      :class="isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 border-b-0 opacity-0'"
+    >
+      <router-link
+        v-for="item in menuItems"
+        :key="item.name"
+        :to="item.href"
+        class="block px-4 py-3 text-sm text-text no-underline transition-colors duration-200 hover:text-accent aria-[current=page]:text-accent"
+        @click="closeMobileMenu"
+      >
+        {{ item.name }}
+      </router-link>
+    </div>
   </header>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRoute } from 'vue-router'
 import { gsap } from 'gsap'
 
 const menuRef = ref<HTMLElement | null>(null)
@@ -125,7 +102,6 @@ withDefaults(defineProps<Props>(), {
 
 // Estado reactivo
 const isMobileMenuOpen = ref<boolean>(false)
-const route = useRoute()
 
 // Métodos
 const toggleMobileMenu = (): void => {
@@ -136,10 +112,6 @@ const closeMobileMenu = (): void => {
   isMobileMenuOpen.value = false
 }
 
-const isActiveRoute = (href: string): boolean => {
-  return route.path === href
-}
-
 // Cerrar menú móvil al redimensionar la ventana
 const handleResize = (): void => {
   if (window.innerWidth >= 768) {
@@ -147,14 +119,15 @@ const handleResize = (): void => {
   }
 }
 
-// Animacion entrada del menu
+// Animacion entrada del menu — restrained: the system doesn't let things float in.
 const animatemenu = () => {
   if (menuRef.value) {
-    gsap.from(menuRef.value, {
+    gsap.from(menuRef.value.children, {
       opacity: 0,
-      y: -100,
-      ease: "power2.out",
-      duration: 1,
+      y: -12,
+      ease: 'power2.out',
+      duration: 0.5,
+      stagger: 0.06,
     })
   }
 }
@@ -162,14 +135,10 @@ const animatemenu = () => {
 // Lifecycle hooks
 onMounted(() => {
   window.addEventListener('resize', handleResize)
-    animatemenu()
+  animatemenu()
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
 })
 </script>
-
-<style scoped>
-/* Animaciones adicionales si necesitas algo específico */
-</style>

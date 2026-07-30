@@ -1,42 +1,37 @@
 <script setup lang="ts">
 import { gsap } from "gsap";
 import { ref, onMounted } from "vue";
-import { SplitText } from 'gsap/SplitText'
+import { SplitText } from "gsap/SplitText";
 
-const subtitleRef = ref<HTMLElement | null>(null);
+const headingRef = ref<HTMLElement | null>(null);
 const imageRef = ref<HTMLElement | null>(null);
 
 const animateText = () => {
   gsap.registerPlugin(SplitText);
 
-  let subtitleSplit = SplitText.create(subtitleRef.value, {
-  type: "chars",
+  const headingSplit = SplitText.create(headingRef.value, {
+    type: "chars",
   });
 
-  let charsTl = gsap.timeline();
-  
-  subtitleSplit.chars.forEach((char, index) => {
+  // Nothing floats and nothing is decorated: the ground settles in, then the
+  // statement rises into place on a tight stagger — no scatter, no colour shift.
+  const tl = gsap.timeline();
 
-    gsap.from(char, {
-      duration: 0.75,
-      y: gsap.utils.random(-150, 150),
-      x: gsap.utils.random(-300, 300),
-      rotate: gsap.utils.random(-360, 360),
-      scale: gsap.utils.random(0, 2),
-      ease: "back.out",
-      color: "#5F7CE0",
-      opacity: 0,
-      delay: index * 0.01,
-    });
-  })
-  charsTl.from(imageRef.value, {
-    delay: 1,
-    duration: 0.75,
-    x: -150,
-    ease: "power.out",
+  tl.from(imageRef.value, {
+    duration: 1.1,
     opacity: 0,
+    scale: 1.04,
+    ease: "power2.out",
   });
-}
+
+  tl.from(headingSplit.chars, {
+    duration: 0.5,
+    y: 24,
+    opacity: 0,
+    ease: "power3.out",
+    stagger: 0.012,
+  }, "-=0.75");
+};
 
 onMounted(() => {
   animateText();
@@ -44,25 +39,38 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="flex flex-col items-center justify-center min-h-screen">
-    <div class="card flex">
-      <h1 class="text-6xl text-black font-ancient" ref="subtitleRef">
-        "Gaze upon the arcane emergence of Claudia's real estate realm, forged
-        from the void"
-      </h1>
+  <!-- The photograph is the ground; the statement sits on it, flush left. -->
+  <main class="relative flex flex-1 items-center overflow-hidden">
+    <div class="hero-photo grayscale" ref="imageRef">
+      <img
+        src="../assets/img/facade.jpg"
+        alt="Fachada de una casa moderna de dos plantas con piscina, al atardecer"
+      />
     </div>
+    <div class="hero-scrim"></div>
 
-    <img
-      class="mr-24"
-      src="https://www.shutterstock.com/image-vector/work-progress-coming-soon-icon-600nw-2492263749.jpg"
-      alt="work in progress"
-      ref="imageRef"
-    />
+    <section class="relative mx-auto w-full max-w-7xl px-4 py-16">
+      <div class="max-w-2xl">
+        <p class="card-kicker">Realm Properties</p>
+
+        <h1 class="mt-2 text-4xl md:text-6xl" ref="headingRef">
+          Arquitectura para vivir
+        </h1>
+
+        <p class="text-muted mt-4 max-w-prose">
+          Una selección de propiedades con carácter: obra moderna, materiales
+          honestos y emplazamientos que importan.
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <button type="button" class="btn btn-primary">Ver propiedades</button>
+          <router-link to="/contact" class="btn btn-secondary">Contacto</router-link>
+        </div>
+      </div>
+    </section>
+
+    <p class="text-muted absolute bottom-3 left-4 text-[11px]">
+      Residencia moderna con piscina, al atardecer.
+    </p>
   </main>
 </template>
-
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>

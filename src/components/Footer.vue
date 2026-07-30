@@ -14,8 +14,8 @@
       <!-- Columna 2: Enlaces rápidos -->
       <div class="flex flex-col items-center md:items-start gap-3">
         <h3 class="font-morris text-lg text-[#5F7CE0] mb-2">Navegación</h3>
-        <router-link 
-          to="/" 
+        <router-link
+          to="/home"
           class="hover:text-[#5F7CE0] transition-colors duration-300"
         >
           Inicio
@@ -26,8 +26,14 @@
         >
           Sobre Nosotros
         </router-link>
-        <router-link 
-          to="/contact" 
+        <router-link
+          to="/properties"
+          class="hover:text-[#5F7CE0] transition-colors duration-300"
+        >
+          Propiedades
+        </router-link>
+        <router-link
+          to="/contact"
           class="hover:text-[#5F7CE0] transition-colors duration-300"
         >
           Contáctanos
