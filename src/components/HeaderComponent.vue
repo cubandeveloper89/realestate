@@ -93,9 +93,9 @@ withDefaults(defineProps<Props>(), {
   logoText: 'TuLogo',
   logoImageUrl: '',
   menuItems: () => [
-    { name: 'Inicio', href: '/' },
+    { name: 'Inicio', href: '/home' },
     { name: 'Acerca', href: '/about' },
-    { name: 'Servicios', href: '/services' },
+    { name: 'Propiedades', href: '/properties' },
     { name: 'Contacto', href: '/contact' },
   ]
 })
